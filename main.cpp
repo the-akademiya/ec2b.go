@@ -63,7 +63,7 @@ int main()
     }
 
     // Write them to Ec2b file
-    auto* ec2b = fopen("Ec2bSeed.bin", "wb");
+    auto* ec2b = fopen("ec2bSeed.bin", "wb");
     if (ec2b != nullptr) {
         fwrite("Ec2b", sizeof(uint32_t), 1, ec2b); // "Ec2b", non-terminated
         fwrite("\x10\0\0\0", sizeof(uint32_t), 1, ec2b); // 0x10, key length(?) or version

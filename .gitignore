@@ -3,6 +3,13 @@
 /*.out
 /*.exe
 
+Makefile
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+ec2b
+
+
 /*-build-*
 
 .idea
