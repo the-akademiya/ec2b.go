@@ -48,7 +48,7 @@ void get_decrypt_vector(uint8_t* key, const uint8_t* crypt, uint64_t crypt_size,
     }
 }
 
-int main()
+int main(int argc, char **argv)
 {
     // First generate random key and data
     uint8_t key[16];
@@ -63,7 +63,7 @@ int main()
     }
 
     // Write them to Ec2b file
-    auto* ec2b = fopen("ec2bSeed.bin", "wb");
+    auto* ec2b = fopen(argv[1], "wb");
     if (ec2b != nullptr) {
         fwrite("Ec2b", sizeof(uint32_t), 1, ec2b); // "Ec2b", non-terminated
         fwrite("\x10\0\0\0", sizeof(uint32_t), 1, ec2b); // 0x10, key length(?) or version
@@ -87,7 +87,7 @@ int main()
     get_decrypt_vector(key, data, sizeof(data), xorpad, sizeof(xorpad));
 
     // Write key file
-    auto* vector = fopen("Ec2bKey.bin", "wb");
+    auto* vector = fopen(argv[2], "wb");
     if (vector != nullptr) {
         fwrite(xorpad, sizeof(xorpad), 1, vector);
         fclose(vector);
